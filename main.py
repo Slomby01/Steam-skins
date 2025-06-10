@@ -1,8 +1,15 @@
 from typing import Union
 import httpx as htp
 from fastapi import FastAPI, Request
-
+from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=False,  # Must be False when using "" for origins
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
+    allow_headers=["*"],
+)
 database = {}
 
 
